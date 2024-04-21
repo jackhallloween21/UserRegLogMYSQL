@@ -17,7 +17,7 @@ package JDBC;
 		String insert_sql="insert into register values(?,?,?,?,?)"; //inserting user name, password, Full name, Phone and email
 		String delete_sql="delete from register where uname=?"; // delete user
 		String update_sql="update register set password=? where uname=?"; //change password
-		String login_sql="select fname,email,pno,uname from register where uname=? and password=?";
+		String login_sql="select fname, email, pno, uname from register where uname=? and password=?";
 		public void getData()
 		{
 			try
@@ -60,8 +60,8 @@ package JDBC;
 			  ps.setString(1, uname);
 			  ps.setString(2, pass);
 			  ps.setString(3, fname);
-			  ps.setString(4, email);
-			  ps.setString(5, pno);
+			  ps.setString(4, pno);
+			  ps.setString(5, email);
 			  ps.executeUpdate();
 			  System.out.println("User Registered Successfully!");
 			}
@@ -108,10 +108,14 @@ package JDBC;
 			  ps=cn.prepareStatement(login_sql);
 			  ps.setString(1, uname);
 			  ps.setString(2, pass);
-			  ps.executeUpdate();
+			  ResultSet rs = ps.executeQuery();
 			  System.out.println("User logged in Successfully!");
+			  while(rs.next())
+			  {
+				  System.out.println(" Username :"+rs.getString(4)+"\n Full Name:"+rs.getString(1)+" \n Phone No:"+rs.getString(3)+" \n Email:"+rs.getString(2));
+				  System.out.println();
+			 }
 			}
-			
 			catch(SQLException se)
 			{
 				se.printStackTrace();
@@ -143,9 +147,10 @@ package JDBC;
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub
 	 //Registration fd=new Registration(); // debugging before creating menu class
-	  //fd.addData();
+	 //fd.addData();
 	 //fd.deleteData();
-	  //fd.getData();
+	 //fd.getData();
+	 //fd.loginData();
 	  //fd.updateData();
 	  //fd.getData();
 		}
