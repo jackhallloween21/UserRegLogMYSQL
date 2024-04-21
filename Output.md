@@ -4,7 +4,7 @@ Enter:
  3 to reset password 
  4 to show users and their details 
  5 to delete user 
-5
+ 5
 Enter Username to Delete:
 Tony
 User Deleted Successfully!
